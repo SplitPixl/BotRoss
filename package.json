@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/SplitPixl/BotRoss#readme",
   "dependencies": {
+    "dotenv": "^5.0.1",
     "eris": "^0.8.4",
     "superagent": "^3.8.2",
     "telegraf": "^3.19.0"
