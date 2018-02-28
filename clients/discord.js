@@ -15,17 +15,19 @@ module.exports = function () {
         args: msg.content.split(' ').slice(1, msg.content.split(' ').length),
         author: {
           name: `${msg.author.username}#${msg.author.discriminator}`,
+          iconUrl: msg.author.avatarURL.replace('?size=128', '?size=512'),
           id: msg.author.id
         },
         provider: 'discord',
-        original: msg
+        original: msg,
+        botClient: bot
       }
       client.emit('command', formattedCommand, (response) => {
         if(typeof response == 'object') {
-          if(response.text && response.file) {
-            msg.channel.createMessage(response.text, {file: response.file.buffer, name: response.file.name})
-          } else if(response.file) {
-            msg.channel.createMessage('', {file: response.file.buffer, name: response.file.name})
+          if(response.text && response.img) {
+            msg.channel.createMessage(response.text, {file: response.img.buffer, name: response.img.name})
+          } else if(response.img) {
+            msg.channel.createMessage('', {file: response.img.buffer, name: response.img.name})
           } else if(response.text) {
             msg.channel.createMessage(response.text)
           }

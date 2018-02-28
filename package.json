@@ -1,0 +1,24 @@
+{
+  "name": "botross",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SplitPixl/BotRoss.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SplitPixl/BotRoss/issues"
+  },
+  "homepage": "https://github.com/SplitPixl/BotRoss#readme",
+  "dependencies": {
+    "eris": "^0.8.4",
+    "superagent": "^3.8.2",
+    "telegraf": "^3.19.0"
+  }
+}

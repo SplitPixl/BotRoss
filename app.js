@@ -7,6 +7,7 @@ let commands = fs.readdirSync('./commands').reduce((cmds, file) => {
     cmd.name = file.replace('.js', '')
     cmds[cmd.name] = cmd
     return cmds
+    console.log(`Loaded command ${cmd.name}`)
   }
 }, {})
 
@@ -18,13 +19,12 @@ fs.readdirSync('./clients').forEach((file) => {
     let client = require(`./clients/${file}`)()
     let name = file.replace('.js', '')
     clients[name] = client
-    console.log(`Loading client ${name}`)
-
     client.on('command', (cmd, response) => {
       if(commands[cmd.name]) {
         console.log(`${cmd.provider} > ${cmd.author.name}: ${cmd.text}`)
-        commands[cmd.name].run(cmd, (resp) => {response(resp)})
+        commands[cmd.name].run({commands, clients}, cmd, (resp) => {response(resp)})
       }
     })
+    console.log(`Loaded client ${name}`)
   }
 })
