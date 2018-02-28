@@ -2,6 +2,8 @@ const config = require('dotenv').config(),
 	  fs = require('fs'),
 	  chalk = require('chalk');
 
+const helpers = require('./utils/helpers.js');
+
 let commands = fs.readdirSync('./commands').reduce((cmds, file) => {
   if(file.endsWith('.js')) {
     let cmd = require(`./commands/${file}`)
@@ -21,10 +23,11 @@ fs.readdirSync('./clients').forEach((file) => {
     clients[name] = client
     client.on('command', (cmd, response) => {
       if(commands[cmd.name]) {
-        console.log(`${cmd.provider} > ${cmd.author.name}: ${cmd.text}`)
+        //console.log(`${cmd.provider} > ${cmd.author.name}: ${cmd.text}`)
+				helpers.logCommand(cmd.provider, cmd.author.name, cmd.text)
         commands[cmd.name].run({commands, clients}, cmd, (resp) => {response(resp)})
       }
     })
-    console.log(`Loaded client ${name}`)
+    helpers.clientLoaded(name)
   }
 })

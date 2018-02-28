@@ -1,5 +1,6 @@
 const EventEmitter = require('events');
 const Telegraf = require('telegraf');
+const helpers = require('../utils/helpers.js');
 
 module.exports = function () {
   let client = new EventEmitter()
@@ -48,8 +49,8 @@ module.exports = function () {
     }
   })
 
-  bot.startPolling()
-  console.log('telegram polling!')
+	bot.startPolling()
+ 	helpers.clientReady('Telegram')
 
   return client
 };

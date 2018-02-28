@@ -1,5 +1,6 @@
-//discord bot dev is a meme
+//discord bot dev is a meme - Seconded
 
+const helpers = require('../utils/helpers.js');
 const EventEmitter = require('events');
 const Eris = require('eris')
 
@@ -39,7 +40,7 @@ module.exports = function () {
   })
 
   bot.on('ready', () => {
-    console.log('discord ready!')
+    helpers.clientReady('Discord')
   })
 
   bot.connect();
