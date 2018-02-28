@@ -52,5 +52,9 @@ module.exports = function () {
 	bot.startPolling()
  	helpers.clientReady('Telegram')
 
+	bot.catch((err) => {
+  	helpers.clientErr('Telegram', err)
+	})
+
   return client
 };

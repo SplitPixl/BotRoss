@@ -43,6 +43,14 @@ module.exports = function () {
     helpers.clientReady('Discord')
   })
 
+	bot.on('error', (err, id) => {
+    helpers.clientErr('Discord', `Shard ${id} - ${err}`)
+  })
+
+	bot.on('disconnect', () => {
+    helpers.clientErr('Discord', `Global connection lost! Check your internet connection!`)
+  })
+
   bot.connect();
 
   return client

@@ -1,7 +1,7 @@
 const chalk = require('chalk');
 
 module.exports = {
-	logCommand, clientLoaded, clientReady
+	logCommand, clientLoaded, clientReady, clientErr
 }
 
 function logCommand(clientName, commandExecuter, command) {
@@ -15,4 +15,8 @@ function clientLoaded(clientName) {
 
 function clientReady(clientName) {
 	console.log(`${chalk.bgGreen.bold(' I ')} ${clientName} began polling!`)
+}
+
+function clientErr(clientName, msg) {
+	console.log(`${chalk.bgRed.bold(' E ')} ${clientName} encountered an error! (${msg})`)
 }
