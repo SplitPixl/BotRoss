@@ -1,5 +1,6 @@
-const config = require('dotenv').config()
-const fs = require('fs')
+const config = require('dotenv').config(),
+	  fs = require('fs'),
+	  chalk = require('chalk');
 
 let commands = fs.readdirSync('./commands').reduce((cmds, file) => {
   if(file.endsWith('.js')) {
@@ -7,7 +8,6 @@ let commands = fs.readdirSync('./commands').reduce((cmds, file) => {
     cmd.name = file.replace('.js', '')
     cmds[cmd.name] = cmd
     return cmds
-    console.log(`Loaded command ${cmd.name}`)
   }
 }, {})
 
