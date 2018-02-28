@@ -10,7 +10,7 @@ module.exports = function () {
   })
 
   bot.on('message', (ctx) => {
-    if(ctx.updateType == 'message' && ctx.message.text && ((ctx.chat.type == 'private' && ctx.message.text.split(' ')[0].split('@')[1] == undefined) || (ctx.message.text.split(' ')[0].split('@')[1] == bot.user.username))) {
+    if(ctx.updateType == 'message' && ctx.message.text && ((ctx.chat.type == 'private' && ctx.message.text.split(' ')[0].split('@')[1] == undefined) || (bot.user ? ctx.message.text.split(' ')[0].split('@')[1] == bot.user.username : false))) {
       bot.telegram.getUserProfilePhotos(ctx.from.id).then(imgs => {
         bot.telegram.getFileLink(imgs.photos[0][imgs.photos[0].length - 1]).then(iconUrl => {
           let formattedCommand = {
