@@ -14,7 +14,7 @@ function clientLoaded(clientName) {
 }
 
 function clientReady(clientName) {
-	console.log(`${chalk.bgGreen.bold(' I ')} ${clientName} began polling!`)
+	console.log(`${chalk.bgGreen.bold(' I ')} ${clientName} is connected!`)
 }
 
 function clientErr(clientName, msg) {

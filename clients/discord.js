@@ -19,10 +19,18 @@ module.exports = function () {
           iconUrl: msg.author.avatarURL.replace('?size=128', '?size=512'),
           id: msg.author.id
         },
+        mentions: msg.mentions.map(mtn => {
+          return {
+            name: `${mtn.username}#${mtn.discriminator}`,
+            iconUrl: mtn.avatarURL.replace('?size=128', '?size=512'),
+            id: mtn.id
+          }
+        }),
         provider: 'discord',
         original: msg,
         botClient: bot
       }
+      formattedCommand.provider.prefix = process.env.discord_prefix
       client.emit('command', formattedCommand, (response) => {
         if(typeof response == 'object') {
           if(response.text && response.img) {
@@ -44,7 +52,7 @@ module.exports = function () {
   })
 
 	bot.on('error', (err, id) => {
-    helpers.clientErr('Discord', `Shard ${id} - ${err}`)
+    helpers.clientErr('Discord', `${id ? 'Shard' + id + ' - ' : ''}${err}`)
   })
 
 	bot.on('disconnect', () => {
