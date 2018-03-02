@@ -2,7 +2,7 @@ const superagent = require('superagent');
 
 module.exports = {
   desc: "Show how this bot works",
-  args: "<command>",
+  args: "[command]",
   run: (ctx, cmd, cb) => {
     if(cmd.args[0] && ctx.commands[cmd.args[0]]) {
       let command = ctx.commands[cmd.args[0]]
@@ -13,7 +13,9 @@ module.exports = {
       let message = []
       Object.keys(ctx.commands).forEach(command => {
         command = ctx.commands[command]
-        message.push(`${command.name} ${command.args} - ${command.desc}`)
+        if(!command.hidden) {
+          message.push(`${command.name} ${command.args} | ${command.desc}`)
+        }
       })
       cb(message.join('\n'))
     }
