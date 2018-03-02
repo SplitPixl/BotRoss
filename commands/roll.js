@@ -6,7 +6,7 @@ module.exports = {
   args: "[mention]",
   run: (ctx, cmd, cb) => {
     gm(request(cmd.mentions[0] ? cmd.mentions[0].iconUrl : false || cmd.args[0] || cmd.author.iconUrl))
-    .solarize(128)
+    .roll(45, 45)
     .toBuffer('PNG',function (err, buffer) {
       if (err) {
         console.error(err)

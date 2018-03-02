@@ -4,9 +4,9 @@ module.exports = {
 	logCommand, clientLoaded, clientReady, clientErr
 }
 
-function logCommand(clientName, commandExecuter, command) {
+function logCommand(clientName, command) {
 	//console.log(chalk.bgGreen(' CMD ') + ' ' + chalk.bold(clientName) + ' - ' + commandExecuter + ' > "' + command + '"')
-	console.log(`${chalk.bgCyan.bold(' C ')} ${chalk.bold(clientName)} - ${commandExecuter} > '${chalk.italic(command)}'`)
+	console.log(`${chalk.bgCyan.bold(' C ')} ${chalk.bold(clientName)} : ${!command.group.private ? command.group.name + ' |' : 'PRIVATE MESSAGE |'} ${command.author.name} > ${chalk.italic(command.text)}`)
 }
 
 function clientLoaded(clientName) {

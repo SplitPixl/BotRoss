@@ -5,7 +5,7 @@ module.exports = {
   args: "<text>",
   run: (ctx, cmd, cb) => {
     console.log(cmd.mentions)
-    superagent.get(cmd.mentions[0] ? cmd.mentions[0].iconUrl : false || cmd.author.iconUrl).buffer(true).end((err, resp) => {
+    superagent.get(cmd.mentions[0] ? cmd.mentions[0].iconUrl : false || cmd.args[0] || cmd.author.iconUrl).buffer(true).end((err, resp) => {
       cb({
         img:{
           buffer: resp.body,

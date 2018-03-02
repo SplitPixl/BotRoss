@@ -5,7 +5,7 @@ module.exports = {
   desc: "paint stuff",
   args: "",
   run: (ctx, cmd, cb) => {
-    gm(request(cmd.mentions[0] ? cmd.mentions[0].iconUrl : false || cmd.author.iconUrl))
+    gm(request(cmd.mentions[0] ? cmd.mentions[0].iconUrl : false || cmd.args[0] || cmd.author.iconUrl))
     .paint(10)
     .toBuffer('PNG',function (err, buffer) {
       if (err) {

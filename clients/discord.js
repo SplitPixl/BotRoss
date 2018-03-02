@@ -25,12 +25,16 @@ module.exports = function () {
             iconUrl: mtn.avatarURL.replace('?size=128', '?size=512'),
             id: mtn.id
           }
-        }),
+        }) || [],
+        group: {
+          private: msg.channel.guild ? false : true,
+          name: msg.channel.guild ? msg.channel.guild.name : "PRIVATE MESSAGE",
+          id: msg.channel.guild ? msg.channel.guild.id : "PRIVATE MESSAGE"
+        },
         provider: 'discord',
         original: msg,
         botClient: bot
       }
-      formattedCommand.provider.prefix = process.env.discord_prefix
       client.emit('command', formattedCommand, (response) => {
         if(typeof response == 'object') {
           if(response.text && response.img) {

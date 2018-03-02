@@ -56,6 +56,11 @@ module.exports = function () {
                 iconUrl: iconUrl,
                 id: ctx.from.id
               },
+              group: {
+                private: ctx.chat.type == 'private',
+                name: ctx.chat.title,
+                id: ctx.chat.id
+              },
               mentions,
               provider: 'telegram',
               original: ctx,

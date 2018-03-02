@@ -24,7 +24,7 @@ fs.readdirSync('./clients').forEach((file) => {
     client.on('command', (cmd, response) => {
       if(commands[cmd.name]) {
         //console.log(`${cmd.provider} > ${cmd.author.name}: ${cmd.text}`)
-				helpers.logCommand(cmd.provider, cmd.author.name, cmd.text)
+				helpers.logCommand(cmd.provider, cmd)
         commands[cmd.name].run({commands, clients}, cmd, (resp) => {response(resp)})
       }
     })
